@@ -1,0 +1,17 @@
+//Syntax Parser---A program that reads our code and determines what it does and if its grammar is valid. It translates our program to machine understable.
+
+//Lexical environment means it determines where you are writing your code. It means it checks whether you have put code in right place or not. e.g.
+//have you put  closeing brace or not if you used open braces. (need more research)
+
+//Execution context
+
+//Javascript engine creates one global object and this variable whenever it runs code by defualt.
+//When javascipt runs execution context creates and it create two variable that is defined at top.
+
+//at the global level this and global object are equal both are {} or window in case of browsers.
+
+//in javascript global means the code or variable which are not inside the function
+
+//in javascript if you define variable and function outside the function it get attached to global object and this.
+
+//javascript is single threaded, synchronous behaviour in its behavior.

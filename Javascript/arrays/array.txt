@@ -1,0 +1,277 @@
+PageRef:https://www.w3schools.com/js/js_arrays.asp
+
+
+Adding elements with high indexes can create undefined "holes" in an array:
+
+JavaScript does not support arrays with named indexes.
+
+In JavaScript, arrays always use numbered indexes.
+
+If you use named indexes, JavaScript will redefine the array to a standard object.
+After that, some array methods and properties will produce incorrect results.
+Check below link.
+https://www.w3schools.com/js/tryit.asp?filename=tryjs_array_associative_2
+
+
+When to Use Arrays. When to use Objects.
+JavaScript does not support associative arrays.
+You should use objects when you want the element names to be strings (text).
+You should use arrays when you want the element names to be numbers.
+
+The new keyword only complicates the code. It can also produce some unexpected results:
+var points = new Array(40, 100);  // Creates an array with two elements (40 and 100)
+What if I remove one of the elements?
+var points = new Array(40);       // Creates an array with 40 undefined elements !!!!!
+
+
+A common question is: How do I know if a variable is an array?
+To solve this problem ECMAScript 5 defines a new method Array.isArray():
+Array.isArray(fruits);     // returns true
+
+The instanceof operator returns true if an object is created by a given constructor:
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+fruits instanceof Array  // returns true
+
+
+************************************************************************************************************************************************************************************************
+PageRef:https://www.w3schools.com/js/js_array_methods.asp
+
+The join() method also joins all array elements into a string.
+
+It behaves just like toString(), but in addition you can specify the separator:
+
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+document.getElementById("demo").innerHTML = fruits.join(" * ");
+
+Result:
+Banana * Orange * Apple * Mango
+
+
+Shifting is equivalent to popping, working on the first element instead of the last.
+
+The shift() method removes the first array element and "shifts" all other elements to a lower index.
+
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.shift();            // Removes the first element "Banana" from fruits
+
+The shift() method returns the string that was "shifted out"
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.shift();             // Returns "Banana"
+
+The unshift() method adds a new element to an array (at the beginning), and "unshifts" older elements:
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.unshift("Lemon");    // Adds a new element "Lemon" to fruits
+
+The unshift() method returns the new array length.
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.unshift("Lemon");    // Returns 5
+
+
+
+Since JavaScript arrays are objects, elements can be deleted by using the JavaScript operator delete:
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+delete fruits[0];           // Changes the first element in fruits to undefined
+
+Using delete may leave undefined holes in the array. Use pop() or shift() instead.
+
+The splice() method can be used to add new items to an array:
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.splice(2, 1, "Lemon", "Kiwi");  //It outputs Banana,Orange,Lemon,Kiwi,Mango
+
+The first parameter (2) defines the position where new elements should be added (spliced in).
+
+The second parameter (1) defines how many elements should be removed.
+
+The rest of the parameters ("Lemon" , "Kiwi") define the new elements to be added.
+
+
+With clever parameter setting, you can use splice() to remove elements without leaving "holes" in the array:
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.splice(0, 1);        // Removes the first element of fruit
+
+
+The concat() method creates a new array by merging (concatenating) existing arrays:
+var myGirls = ["Cecilie", "Lone"];
+var myBoys = ["Emil", "Tobias", "Linus"];
+var myChildren = myGirls.concat(myBoys);     // Concatenates (joins) myGirls and myBoys
+
+The concat() method does not change the existing arrays. It always returns a new array.
+
+The concat() method can take any number of array arguments:
+
+Example (Merging Three Arrays)
+
+var arr1 = ["Cecilie", "Lone"];
+var arr2 = ["Emil", "Tobias", "Linus"];
+var arr3 = ["Robin", "Morgan"];
+var myChildren = arr1.concat(arr2, arr3);     // Concatenates arr1 with arr2 and arr3
+
+
+The concat() method can also take values as arguments:
+var arr1 = ["Cecilie", "Lone"];
+var myChildren = arr1.concat(["Emil", "Tobias", "Linus"]); 
+
+The slice() method slices out a piece of an array into a new array.
+
+This example slices out a part of an array starting from array element 1 ("Orange"):
+
+var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+var citrus = fruits.slice(1);
+
+fruits is Banana,Orange,Lemon,Apple,Mango
+citrus is Orange,Lemon,Apple,Mango
+
+
+The slice() method can take two arguments like slice(1, 3).
+
+The method then selects elements from the start argument, and up to (but not including) the end argument.
+var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+var citrus = fruits.slice(1, 3);
+
+citrus Orange,Lemon
+
+
+**********************************************************************************************************************************************************************************************
+https://www.w3schools.com/js/js_array_iteration.asp
+
+The forEach() method Calls a function once for each array element.
+var txt = "";
+var numbers = [4, 9, 16, 25];
+numbers.forEach(myFunction);
+
+function myFunction(value, index, array) {
+    txt = txt + value + "<br>"; 
+}
+//It outputs 
+4
+9
+16
+25
+
+The map() method creates a new array by performing a function on each array element.
+var numbers1 = [4, 9, 16, 25];
+var numbers2 = numbers1.map(myFunction);
+
+function myFunction(value, index, array) {
+    return value * 2;
+}
+
+//It outputs
+numbers2 will be 8,18,32,50
+
+
+The map() method does not execute the function for array elements without values.
+The map() method does not change the original array.
+
+The filter() method creates a new array with array elements that passes a test.
+var numbers = [4, 9, 16, 25];
+var over18 = numbers.filter(myFunction);
+
+function myFunction(value, index, array) {
+    return value > 18;
+}
+
+over18 will be 25
+
+
+he reduce() method runs a function on each array element to produce (reduce it to) a single value.
+
+var numbers = [4, 9, 16, 25];
+var sum = numbers.reduce(myFunction);
+
+document.getElementById("demo").innerHTML = "The sum is " + sum;
+
+function myFunction(total, value, index, array) {
+    return total + value;
+}
+
+The sum is 54
+
+Note that the function takes 4 arguments:
+
+The total (the initial value / previously returned value)
+The item value
+The item index
+The array itself
+
+
+The every() method check if all array values pass a test.
+var numbers = [4, 9, 16, 25, 29];
+var allOver18 = numbers.every(myFunction);
+
+function myFunction(value, index, array) {
+    return value > 18;
+}
+
+allOver18 will return false
+
+The some() method check if some array values pass a test.
+
+var numbers = [4, 9, 16, 25, 29];
+var allOver18 = numbers.some(myFunction);
+
+function myFunction(value, index, array) {
+    return value > 18;
+}
+
+allOver18 will return true
+
+Array.indexOf()
+Search an array for an element value and returns its position
+
+var fruits = ["Apple", "Orange", "Apple", "Mango"];
+var a = fruits.indexOf("Apple");
+
+a is 0
+
+array.indexOf(item, start)
+start	Optional. Where to start the search. Negative values will start at the given position counting from the end, and search to the end.
+
+
+Array.lastIndexOf() is the same as Array.indexOf(), but searches from the end of the array.
+var fruits = ["Apple", "Orange", "Apple", "Mango"];
+var a = fruits.lastIndexOf("Apple");
+
+a value is 3
+
+array.lastIndexOf(item, start)
+start	Optional. Where to start the search. Negative values will start at the given position counting from the end, and search to the beginning
+
+
+The find() method returns the value of the first array element that passes a test function.
+
+var numbers = [4, 9, 16, 25, 29];
+var first = numbers.find(myFunction);
+
+function myFunction(value, index, array) {
+    return value > 18;
+}
+
+first value is 25
+
+
+The findIndex() method returns the index of the first array element that passes a test function.
+var numbers = [4, 9, 16, 25, 29];
+var first = numbers.findIndex(myFunction);
+
+function myFunction(value, index, array) {
+    return value > 18;
+}
+
+first value is 3
+
+**********************************************************************************************************************************************************************************************
+
+Page Ref :https://www.w3schools.com/js/js_array_sort.asp
+
+The sort() method sorts an array alphabetically:
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.sort();        // Sorts the elements of fruits
+output will be Apple,Banana,Mango,Orange
+
+The reverse() method reverses the elements in an array.
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.sort();        // First sort the elements of fruits 
+fruits.reverse();     // Then reverse the order of the elements
+Output will be Orange,Mango,Banana,Apple
